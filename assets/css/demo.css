@@ -395,6 +395,7 @@ display: inline-flex;
 	font-family: lemon;
 	color: white;
 	background-color: black;
+	border-color: black;
 }
 
 #right {
