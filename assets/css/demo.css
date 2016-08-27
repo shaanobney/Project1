@@ -27,8 +27,8 @@
 }
 
 @font-face {
-	font-family: vita;
-	src: url("../fonts/vita.ttf");
+	font-family: basic;
+	src: url("../fonts/basic.ttf");
 }
 
 @font-face {
@@ -40,6 +40,11 @@
 		url('../fonts/codropsicons/codropsicons.woff') format('woff'),
 		url('../fonts/codropsicons/codropsicons.ttf') format('truetype'),
 		url('../fonts/codropsicons/codropsicons.svg#codropsicons') format('svg');
+}
+
+html, body {
+    margin: 0;
+    height: 100%;
 }
 
 html {
@@ -146,6 +151,7 @@ strong {
 	font-size: 2.5vw;
 	font-family: title;
 	max-width: 360px;
+	color: #44b3c2
 
 }
 
@@ -215,7 +221,7 @@ strong {
 	position: relative;
 	clear: both;
 	margin: 0 auto;
-	padding: 1em 0 4em;
+	padding: 1 0 4em;
 	max-width: 1000px;
 	list-style: none;
 	text-align: center;
@@ -321,10 +327,10 @@ strong {
 }
 
 #foodie-detail h1 {
-	font-family: lemon;
+	font-family: basic;
 	margin-bottom: 5px;
 	margin-left: 20px;
-/*	white-space: pre-wrap;*/
+	color: #f1a94e;
 	max-width: 460px;
 	font-size: 2.5vw;
 }
@@ -407,7 +413,7 @@ display: inline-flex;
 }
 
 #topper {
-	margin-top: 10px;
+	margin: 0px;
 }
 
 #watch {
@@ -646,6 +652,34 @@ figcaption h2 {
 	font-size: 1.25em;
 }
 
+@media screen and (max-width: 957px) {
+	#genres figure {
+    	max-width: 100%;
+    	max-height: 290px;
+    }
+
+    #foodChoi figure {
+    	max-width: 100%;
+    	max-height: 290px;
+    }
+
+@media screen and (max-width: 800px) {
+	#genres figure {
+    	float: none;
+    	max-width: 100%;
+    	max-height: 290px;
+    }
+
+    #foodChoi figure {
+    	float: none;
+    	max-width: 100%;
+    	max-height: 290px;
+    }
+
+    .container {
+    	width: auto;
+    }
+
 @media screen and (max-width: 25em) {
 	.codrops-header {
 		font-size: 75%;
@@ -655,9 +689,9 @@ figcaption h2 {
 	}
 }
 
-@media screen and (min-width: 768px) {
+@media (min-width: 768px) {
 	.container {
-    	width: auto;
+    	width: auto !important;
     }
 }
 
@@ -672,4 +706,5 @@ figcaption h2 {
 		margin: 10px auto;
 		width: 100%;
 	}
+
 }
