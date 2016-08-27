@@ -324,7 +324,7 @@ strong {
 	font-family: lemon;
 	margin-bottom: 5px;
 	margin-left: 20px;
-	white-space: pre-wrap;
+/*	white-space: pre-wrap;*/
 	max-width: 460px;
 	font-size: 2.5vw;
 }
@@ -392,7 +392,9 @@ display: inline-flex;
 }
 
 #reset {
-	font-family: nougat;
+	font-family: lemon;
+	color: white;
+	background-color: black;
 }
 
 #right {

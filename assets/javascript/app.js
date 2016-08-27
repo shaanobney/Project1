@@ -89,15 +89,13 @@ $(document).on('ready', function() {
 								    guideBoxId = 64688;
 								}
 
-								if (movPurchase === "undefined") {
-								    console.log("you need to fix this shit");
-								}
-
 								var movPurchase = response.purchase_web_sources[0].link;
 								var movPurchases = response.purchase_web_sources[1].link;
 								var moveTitle = response.title;
 								var movePoster = response.poster_240x342;
 
+								console.log(movPurchase);
+								console.log(movPurchases);
 								var purchase = response.purchase_web_sources[0].link;
 								var purchases = response.purchase_web_sources[1].link;
 
@@ -107,6 +105,14 @@ $(document).on('ready', function() {
 											purchase: movPurchase,
 											purchases: movPurchases,
 										})
+
+								if (movPurchase === "undefined") {
+									movPurchase = 'http://www.apple.com/itunes/charts/movie-rentals/';
+								}
+
+								if (movPurchases === "undefined") {
+									movPurchases = 'https://www.amazon.com/Amazon-Video/b?ie=UTF8&node=2858778011'; 
+								}
 
 								var movie_detail = '<h1><strong>'+moveTitle+'</strong></h1>'+'<div id="boner1"><img src='+movePoster+'></div><a class="linky" href='+purchase+' target="_blank"><img id="left" src="http://www.niftybuttons.com/itunes/itunesbutton1.png" alt="iTunes Button (via NiftyButtons.com)"></a><a class="linky" href='+purchases+' target="_blank"><img id="right" src="http://www.niftybuttons.com/amazon/amazon-button9.png" alt="Amazon Button (via NiftyButtons.com)"></a>';
 								$('#movie-detail').append(movie_detail);
