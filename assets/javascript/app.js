@@ -3,8 +3,6 @@ $(document).on('ready', function() {
 	$("#secChoice").css("display", "none");
 	$("#genres").css("display", "none");
 	$("#foodChoi").css("display", "none");
-	// $("#foodie-detail").hide();
-	// $("#movie-detail").hide();
 	$("#resets").hide();
 	$("#result").hide();
 
@@ -12,10 +10,6 @@ $(document).on('ready', function() {
 	var genre_list_url = 'https://api.themoviedb.org/3/genre/movie/list?api_key='+tmdb_api_key;
 	var guideBoxApiKey = 'toZrSHYEOKuOaC4Y71KeOrkR5oYhn5';
 	var trigger = '';
-
-
-	// var guideBoxKey = 'rKxpJKiDZEB3HPJvZQJVMhPlmQzwe8HY',
-	// movieDump = 'https://api-public.guidebox.com/v1.43/US/toZrSHYEOKuOaC4Y71KeOrkR5oYhn5/search/movie/title/'+guideBoxTitle;
 
 	//INIT FIREBASE
 	  var movieBase = {
@@ -36,10 +30,8 @@ $(document).on('ready', function() {
   		 		if (initChoice == 'in') {
   		 			$("#begin").hide();
   		 			$("#secChoice").show();
-  		 			console.log(trigger);
   		 		} else {
   		 			console.log($(this).attr('id'));
-	  		 	 	console.log("what up");
   		 		}
   		 	})
 
@@ -53,27 +45,18 @@ $(document).on('ready', function() {
   		 			$("#watch").remove();
   		 			$("#genres").show();
   		 			trigger = "movie";
-  		 			console.log(trigger);
   		 		} else if (secondChoice == 'munch' && (trigger == '')) {
   		 			$("#secChoice").hide();
   		 			$("#munch").remove();
   		 			$("#foodChoi").show();
-  		 			console.log($(this).attr('id'));
-	  		 	 	console.log("munch and no trigger");
-	  		 	 	console.log(trigger);
+
 	  		 	 } else if (secondChoice == 'munch' && (trigger == "movie")) {
   		 			$("#secChoice").hide();
   		 			$("#genres").hide();
   		 			$("#foodChoi").show();
-  		 			console.log($(this).attr('id'));
-	  		 	 	console.log("munch and movie trigger");
-	  		 	 	console.log(trigger);
 	  		 	} else {
 	  		 		$("#secChoice").hide();
 	  		 		$("#genres").show();
-  		 			console.log($(this).attr('id'));
-	  		 	 	console.log("all else failed");
-	  		 	 	console.log(trigger);
   		 		}
   		 	})
 
@@ -94,20 +77,21 @@ $(document).on('ready', function() {
 
 					var guideBoxTitle = response.results[random].id,
 						movie_detail_url = 'https://api-public.guidebox.com/v1.43/US/rKxpJKiDZEB3HPJvZQJVMhPlmQzwe8HY/search/movie/id/themoviedb/'+guideBoxTitle;
-						console.log(movie_detail_url);
 
 					$.getJSON(movie_detail_url, function (response) {
-						console.log(response.id);
-						console.log(response);
 
 						var guideBoxId = response.id;
 						var guideBoxId_url = 'https://api-public.guidebox.com/v1.43/US/rKxpJKiDZEB3HPJvZQJVMhPlmQzwe8HY/movie/'+guideBoxId;
 						
 							$.getJSON(guideBoxId_url, function (response) {
-								console.log(guideBoxId_url);
-								console.log(response.id);
-								console.log(response);
-								console.log(response.purchase_web_sources[0].link);
+
+								if (guideBoxId === "undefined") {
+								    guideBoxId = 64688;
+								}
+
+								if (movPurchase === "undefined") {
+								    console.log("you need to fix this shit");
+								}
 
 								var movPurchase = response.purchase_web_sources[0].link;
 								var movPurchases = response.purchase_web_sources[1].link;
@@ -135,40 +119,27 @@ $(document).on('ready', function() {
 				$("#foodChoi").hide();
 				$("#secChoice").hide();
 				$("#genres").hide();
-				console.log("should wrap up the loop");
-				console.log("Should be success");
-				// $("#foodie-detail").show();
-				// $("#movie-detail").show();
 				$("#result").show();
 				$("#resets").show();
 
 			} else {
 				$('#myModal').modal('show');
 				trigger == "movie";
-				console.log(trigger);
-				console.log("first WATCH runthrough");
-			$("#secChoice").show();
-			$("#genres").hide();
-			$("#watch").hide();
-			$("#munch").css({"float": "none", "display": "inline-flex"});
-			$("#munch").show();
-		}
-
+				$("#secChoice").show();
+				$("#genres").hide();
+				$("#watch").hide();
+				$("#munch").css({"float": "none", "display": "inline-flex"});
+				$("#munch").show();
+			}
 		});
 
 		$('#foodChoi figure').one('click', function() {
 
-				// $('#foodie-detail').empty();
-				// var x = Math.floor((Math.random() * 10) + 1);
 				var food_id = $(this).attr('id');
 				var recipe_list_url = 'http://food2fork.com/api/search?key=24d0b4ec6120c982a1f02c7e4873ecd3&q='+food_id;
-				console.log(food_id);
 				var food2ForkApiKey = '24d0b4ec6120c982a1f02c7e4873ecd3';
-				console.log(recipe_list_url);
 
-			//GRAB MOVIE BY GENRE
 			$.getJSON(recipe_list_url, function (response) {
-				console.log(food_id);
 
 				var random = Math.floor(Math.random()*response.recipes.length);
 			
@@ -176,9 +147,6 @@ $(document).on('ready', function() {
 				$('#foodie-detail').empty();
 
 				var x = Math.floor(Math.random()*response.recipes.length);
-				console.log(response.recipes[x].title);
-				console.log(response.recipes[x].source_url);
-				console.log(response.recipes[x].image_url);
 
 								var foodTitle = response.recipes[x].title;
 								var foodImg = response.recipes[x].image_url;
@@ -197,8 +165,6 @@ $(document).on('ready', function() {
 			if (trigger == "movie") {
 				$("#foodChoi").hide();
 				$("#secChoice").hide();
-				// $("#foodie-detail").hide();
-				// $("#movie-detail").hide();
 				$("#result").show();
 				$("#resets").show();
 			} else {
