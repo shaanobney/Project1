@@ -689,10 +689,23 @@ figcaption h2 {
 	}
 }
 
-@media (min-width: 768px) {
+@media screen and (min-width: 768px) {
 	.container {
-    	width: auto !important;
+    	width: 100% !important;
     }
+
+    #foodChoi figure {
+    	float: none;
+    	max-width: 100%;
+    	max-height: 100%;
+    }
+
+     #foodChoi figure {
+    	float: none;
+    	max-width: 100%;
+    	max-height: 100%;
+    }
+    
 }
 
 @media screen and (max-width: 50em) {
